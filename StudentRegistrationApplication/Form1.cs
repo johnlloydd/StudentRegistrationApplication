@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +40,7 @@ namespace StudentRegistrationApplication
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,20 +50,27 @@ namespace StudentRegistrationApplication
             string year = comboBox3.GetItemText(comboBox3.SelectedItem);
             string gender = radioButton1.Checked == true ? "Male" : "Female";
 
-            string lastname, firstname, middlename;
+            string lastname, firstname, middlename, program;
 
             lastname = lname.Text;
             firstname = fname.Text;
             middlename = mname.Text;
+            program = comboBox4.Text;
 
-            MessageBox.Show("Student name: " + firstname + " " + middlename + " " + lastname + "\nGender: " + gender + " \nDate of Birth: " + day + "/" +month + "/" + year);
+            DisplayStudentInformation(firstname, middlename, lastname, gender, $"{day}/{month}/{year}", program);
+
+            DisplayStudentInformation(firstname, lastname, program);
+
+            DisplayStudentInformation(firstname, lastname, program);
+
+
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {         
+        {
         }
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -77,7 +85,56 @@ namespace StudentRegistrationApplication
             for (int i = 1900; i < 2024; i++)
             {
                 comboBox3.Items.Add(i.ToString());
+
+                ArrayList prgramlist = new ArrayList();
+                prgramlist.Add("Bachelor of Science in Information Technology");
+                prgramlist.Add("Bachelor of Science in Information System");
+                prgramlist.Add("Bachelor of Science in Computer Science");
+                prgramlist.Add("Bachelor of Science in Computer Engineering");
+                comboBox4.Items.AddRange(prgramlist.ToArray());
+
+                foreach (string program in prgramlist)
+                {
+                    Console.WriteLine(program);
+                }
             }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DisplayStudentInformation(string firstName, string middleName, string lastName, string gender, string dob, string program)
+        {
+            MessageBox.Show($"Student name: {firstName} {middleName} {lastName}\nGender: {gender}\nDate of Birth: {dob}\nProgram: {program}");
+        }
+
+
+        private void DisplayStudentInformation(string firstName, string middleName, string lastName, string program)
+        {
+            MessageBox.Show($"Student name: {firstName} {middleName} {lastName}\nProgram: {program}");
+        }
+
+        private void DisplayStudentInformation(string firstName, string lastName, string program)
+        {
+            MessageBox.Show($"Student name: {firstName} {lastName} \nProgram: {program}");
         }
     }
 }
+    
